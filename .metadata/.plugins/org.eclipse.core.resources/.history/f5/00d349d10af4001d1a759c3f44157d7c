@@ -1,0 +1,157 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import javax.swing.Action;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JWindow;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+
+class main {
+
+ public static void main(String[] args) {
+  new Test();
+ }
+
+}
+
+class Test extends JFrame implements ActionListener {
+ JButton btn1 = null;
+ JButton btn2 = null;
+ JButton btn3 = null;
+ JButton btn4 = null;
+ JButton btn5 = null;
+ JTable table = null;
+
+ public Test() {
+  super("문제");
+  this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+  this.setBounds(200, 200, 500, 500);
+  this.setLayout(new FlowLayout());
+
+  JPanel panelComboBox = new JPanel();
+  JPanel panelList = new JPanel();
+  JPanel panelTable = new JPanel();
+  JPanel panelNormal = new JPanel();
+
+  panelComboBox.setLayout(new FlowLayout());
+  panelList.setLayout(new FlowLayout());
+  panelTable.setLayout(new FlowLayout());
+  panelNormal.setLayout(new FlowLayout());
+
+  // panelTable
+  String title[] = new String[3];
+  title[0] = "학생 이름";
+  title[1] = "학생 성별";
+  title[2] = "학생 나이";
+  String data[][] = new String[0][0];
+  // data[0][0] ="1";
+  // data[0][1] ="남동길";
+  // data[0][2] ="27";
+  //
+  // data[1][0] ="2";
+  // data[1][1] ="이효림";
+  // data[1][2] ="23";
+
+  table = new JTable(data, title);
+  JScrollPane sp = new JScrollPane(table);
+  sp.setPreferredSize(new Dimension(300, 200));
+
+  panelTable.add(sp);
+
+  // panelNormal
+  btn1 = new JButton("과목 및 학점 입력");
+  btn1.addActionListener(this);
+  panelNormal.add(btn1);
+
+
+  btn4 = new JButton("학점 상호 인정 조회");
+  btn4.addActionListener(this);
+  panelNormal.add(btn4);
+
+
+  // 패널 연결
+  this.add(panelComboBox);
+  this.add(panelList);
+  this.add(panelTable);
+  this.add(panelNormal);
+
+  this.setVisible(true);
+ }
+
+
+
+ @Override
+ public void actionPerformed(ActionEvent e) {
+
+  if (e.getSource() == btn1) {
+   new InputStud();
+  }
+
+  if (e.getSource() == btn4) {
+   new InputPro();
+  }
+
+ }
+
+}
+
+
+class InputStud extends JFrame implements ActionListener {
+
+
+ public InputStud() {
+  super("학생 입력");
+  this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+  this.setBounds(200, 200, 250, 300);
+  this.setLayout(new FlowLayout());
+
+
+
+
+  this.setVisible(true);
+ }
+
+ @Override
+ public void actionPerformed(ActionEvent e) {
+ }
+
+}
+
+class InputPro extends JFrame implements ActionListener {
+ public InputPro() {
+  super("교수 입력");
+
+  this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+  this.setBounds(200, 200, 250, 300);
+  this.setLayout(new FlowLayout());
+
+
+  this.setVisible(true);
+
+ }
+
+ @Override
+ public void actionPerformed(ActionEvent e) {
+
+ }
+
+}
+
+
+

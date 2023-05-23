@@ -59,7 +59,7 @@ class MainView extends JFrame implements ActionListener { // 메인뷰 정의
 		String title[] = new String[5];
 		title[0] = "학생 이름";
 		title[1] = "학생 과목";
-		title[2] = "학생 학점";
+		title[2] = "평균 학점";
 		title[3] = "학점 상호 인정";
 		title[4] = "개설 강좌 정보";
 		String data[][] = new String[0][0];
@@ -97,28 +97,26 @@ class MainView extends JFrame implements ActionListener { // 메인뷰 정의
 		String titleTemp[] = new String[5];
 		titleTemp[0] = "학생 이름";
 		titleTemp[1] = "학생 과목";
-		titleTemp[2] = "학생 성적";
+		titleTemp[2] = "평균 학점";
 		titleTemp[3] = "학점 상호 인정";
 		titleTemp[4] = "개설 강좌 정보";
 
 		int size = StuManager.list.size();//맨 밑에 StuManager class는 Student 객체를 저장하고 있는 list를 가지고 있음. 이는 list안에 들어간 원소(Student 객체) 수임.
 //		String[][] dataStudentArray = new String[size][5];
-		int row_num = 0;//테이블 행 개수 구하기
-		for (int i=0;i<size;i++) {
-			row_num+=StuManager.list.get(i).grade.length;//각 student 객체 내 배열(grade, 과목의 수 동일하니) 원소 수 덧셈
-		}
-		Object [][] dataStudentArray = new Object[row_num][5];
-		int k = 0;
-		for (int i = 0; i < size; i++) {//student 객체 내 subject 모두 각각 한 행씩 차지하도록
+		//datastudentarray는 J테이블에 나타낼 테이블임. 
+		Object [][] dataStudentArray = new Object[size][5];
+		for (int i = 0; i < size; i++) {//student 객체 내 subject 모두 각각 한 행씩 차지하도록(즉, student 객체 당 행 한개가 되도록)
 			Student dataStudent = StuManager.list.get(i);
-			for(int j=k; j<row_num;j++) {
-			if (j-k>=dataStudent.grade.length) {break;}
-			dataStudentArray[j][0] = dataStudent.name;
-			dataStudentArray[j][1] = dataStudent.subject[j-k];
-			dataStudentArray[j][2] = dataStudent.grade[j-k];
+			dataStudentArray[i][0] = dataStudent.name;
+			String subject = "";//String 객체 당 모든 subject를 하나로 이어 붙일 것
+			//여기를 한 줄로 입력할 수 있도록 바꾸기
+			for(int j=0; j<dataStudent.subject.length;j++) {
+				subject=subject.concat(dataStudent.subject[j]);
+				subject=subject.concat(", ");
 			}
-			k+=dataStudent.grade.length;
-			}
+			dataStudentArray[i][1]=subject;
+			dataStudentArray[i][2]=dataStudent.average_grade;
+		}
 
 		// 표에 버튼 넣는 코드
 		table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
@@ -210,28 +208,25 @@ class MainView extends JFrame implements ActionListener { // 메인뷰 정의
 			String titleTemp[] = new String[5];
 			titleTemp[0] = "학생 이름";
 			titleTemp[1] = "학생 과목";
-			titleTemp[2] = "학생 성적";
+			titleTemp[2] = "평균 학점";
 			titleTemp[3] = "학점 상호 인정";
 			titleTemp[4] = "개설 강좌 정보";
 
 			int size = StuManager.list.size();//맨 밑에 StuManager class는 Student 객체를 저장하고 있는 list를 가지고 있음. 이는 list안에 들어간 원소(Student 객체) 수임.
 //			String[][] dataStudentArray = new String[size][5];
-			int row_num = 0;//테이블 행 개수 구하기
-			for (int i=0;i<size;i++) {
-				row_num+=StuManager.list.get(i).grade.length;//각 student 객체 내 배열(grade, 과목의 수 동일하니) 원소 수 덧셈
-			}
-			Object [][] dataStudentArray = new Object[row_num][5];
-			int k = 0;
-			for (int i = 0; i < size; i++) {//student 객체 내 subject 모두 각각 한 행씩 차지하도록
+			//datastudentarray는 J테이블에 나타낼 테이블임. 
+			Object [][] dataStudentArray = new Object[size][5];
+			for (int i = 0; i < size; i++) {//student 객체 내 subject 모두 각각 한 행씩 차지하도록(즉, student 객체 당 행 한개가 되도록)
 				Student dataStudent = StuManager.list.get(i);
-				for(int j=k; j<row_num;j++) {//각 student 객체 내 배열의 index는 0부터 시작하고, student 객체는 여러개인 반면, table은 한 개이기에 j=k로 한 것 
-					if (j-k>=dataStudent.grade.length) {break;}
-					dataStudentArray[j][0] = dataStudent.name;
-					dataStudentArray[j][1] = dataStudent.subject[j-k];
-					dataStudentArray[j][2] = dataStudent.grade[j-k];
-				
+				dataStudentArray[i][0] = dataStudent.name;
+				String subject = "";//String 객체 당 모든 subject를 하나로 이어 붙일 것
+				//여기를 한 줄로 입력할 수 있도록 바꾸기
+				for(int j=0; j<dataStudent.subject.length;j++) {
+					subject=subject.concat(dataStudent.subject[j]);
+					subject=subject.concat(", ");
 				}
-				k+=dataStudent.grade.length;	
+				dataStudentArray[i][1]=subject;
+				dataStudentArray[i][2]=dataStudent.average_grade;
 			}
 
 

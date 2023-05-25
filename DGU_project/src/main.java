@@ -1,33 +1,22 @@
-import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.Action;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultCellEditor;
+import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JWindow;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import javax.swing.AbstractCellEditor;
-import java.awt.Component;
 
 class main {
 
@@ -37,19 +26,19 @@ class main {
 
 }
 //
-class MainView extends JFrame implements ActionListener { // ¸ŞÀÎºä Á¤ÀÇ
+class MainView extends JFrame implements ActionListener { // ï¿½ï¿½ï¿½Îºï¿½ ï¿½ï¿½ï¿½ï¿½
 	JButton btn1 = null;
 	JButton btn2 = null;
 	JButton btn3 = null;
 	JTable table = null;
 
 	public MainView() {
-		super("À¶ÇÕ¼ÒÇÁÆ®¿ş¾î ¿¬°èÀü°ø FAQ½Ã½ºÅÛ");
+		super("ìœµí•©ì „ê³µì†Œí”„íŠ¸ì›¨ì–´FAQì‹œìŠ¤í…œ");
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setBounds(200, 200, 800, 500);
 		this.setLayout(new FlowLayout());
 
-		JPanel panelTable = new JPanel();//¸ŞÀÎ ÆäÀÌÁö¿¡¼­ table°ú btn1, btn2, btn3¸¦ ¹­´Â ÄÁÅ×ÀÌ³Ê
+		JPanel panelTable = new JPanel();//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ tableï¿½ï¿½ btn1, btn2, btn3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½
 		JPanel panelNormal = new JPanel();
 
 		panelTable.setLayout(new FlowLayout());
@@ -57,14 +46,14 @@ class MainView extends JFrame implements ActionListener { // ¸ŞÀÎºä Á¤ÀÇ
 
 		// panelTable
 		String title[] = new String[5];
-		title[0] = "ÇĞ»ı ÀÌ¸§";
-		title[1] = "ÇĞ»ı °ú¸ñ";
-		title[2] = "Æò±Õ ÇĞÁ¡";
-		title[3] = "ÇĞÁ¡ »óÈ£ ÀÎÁ¤";
-		title[4] = "°³¼³ °­ÁÂ Á¤º¸";
+		title[0] = "í•™ìƒ ì´ë¦„";
+		title[1] = "ê¸°ìˆ˜ê°•ê³¼ëª©";
+		title[2] = "í‰ê·  í•™ì ";
+		title[3] = "í•™ì  ìƒí˜¸ ì¸ì •";
+		title[4] = "ê°œì„¤ ê°•ì¢Œ ì •ë³´";
 		String data[][] = new String[0][0];
 
-		// Å×ÀÌºí »ı¼º
+		// ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½
 		table = new JTable(data, title);
 		JScrollPane sp = new JScrollPane(table);
 		sp.setPreferredSize(new Dimension(700, 200));
@@ -72,17 +61,17 @@ class MainView extends JFrame implements ActionListener { // ¸ŞÀÎºä Á¤ÀÇ
 		panelTable.add(sp);
 
 		// panelNormal
-		// ¹öÆ° »ı¼º
-		btn1 = new JButton("°ú¸ñ ¹× ÇĞÁ¡ ÀÔ·Â");
+		// ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½
+		btn1 = new JButton("ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸°");
 		btn1.addActionListener(this);
 		panelNormal.add(btn1);
 
-		btn2 = new JButton("Á¤º¸ »èÁ¦");
+		btn2 = new JButton("ì‚­ì œ");
 		btn2.addActionListener(this);
 		panelNormal.add(btn2);
 
-		btn3 = new JButton("Á¤º¸ Á¶È¸");
-		btn3.addActionListener(this);//btn3´©¸£¸é, ¸®½º³Ê ½ÇÇà
+		btn3 = new JButton("ì •ë³´ ì¡°íšŒ");
+		btn3.addActionListener(this);//btn3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		panelNormal.add(btn3);
 
 		this.add(panelTable);
@@ -91,49 +80,49 @@ class MainView extends JFrame implements ActionListener { // ¸ŞÀÎºä Á¤ÀÇ
 		this.setVisible(true);
 	}
 
-	// ÇĞ»ı Á¤º¸ »èÁ¦ ÈÄ, ´Ù½Ã Å×ÀÌºí Àç»ı¼ºÇÒ ¶§ »ç¿ëÇÏ´Â ÇÔ¼ö
+	// ï¿½Ğ»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 	public void refreshTable() { 
 
 		String titleTemp[] = new String[5];
-		titleTemp[0] = "ÇĞ»ı ÀÌ¸§";
-		titleTemp[1] = "ÇĞ»ı °ú¸ñ";
-		titleTemp[2] = "Æò±Õ ÇĞÁ¡";
-		titleTemp[3] = "ÇĞÁ¡ »óÈ£ ÀÎÁ¤";
-		titleTemp[4] = "°³¼³ °­ÁÂ Á¤º¸";
+		titleTemp[0] = "í•™ìƒ ì´ë¦„";
+		titleTemp[1] = "ê¸°ìˆ˜ê°•ê³¼ëª©";
+		titleTemp[2] = "í‰ê·  í•™ì ";
+		titleTemp[3] = "í•™ì  ìƒí˜¸ ì¸ì •";
+		titleTemp[4] = "ê°œì„¤ ê°•ì¢Œ ì •ë³´";
 
-		int size = StuManager.list.size();//¸Ç ¹Ø¿¡ StuManager class´Â Student °´Ã¼¸¦ ÀúÀåÇÏ°í ÀÖ´Â list¸¦ °¡Áö°í ÀÖÀ½. ÀÌ´Â list¾È¿¡ µé¾î°£ ¿ø¼Ò(Student °´Ã¼) ¼öÀÓ.
+		int size = StuManager.list.size();//ï¿½ï¿½ ï¿½Ø¿ï¿½ StuManager classï¿½ï¿½ Student ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½Ì´ï¿½ listï¿½È¿ï¿½ ï¿½ï¿½î°£ ï¿½ï¿½ï¿½ï¿½(Student ï¿½ï¿½Ã¼) ï¿½ï¿½ï¿½ï¿½.
 //		String[][] dataStudentArray = new String[size][5];
-		//datastudentarray´Â JÅ×ÀÌºí¿¡ ³ªÅ¸³¾ Å×ÀÌºíÀÓ. 
+		//datastudentarrayï¿½ï¿½ Jï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½. 
 		Object [][] dataStudentArray = new Object[size][5];
-		for (int i = 0; i < size; i++) {//student °´Ã¼ ³» subject ¸ğµÎ °¢°¢ ÇÑ Çà¾¿ Â÷ÁöÇÏµµ·Ï(Áï, student °´Ã¼ ´ç Çà ÇÑ°³°¡ µÇµµ·Ï)
+		for (int i = 0; i < size; i++) {//student ï¿½ï¿½Ã¼ ï¿½ï¿½ subject ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½à¾¿ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½(ï¿½ï¿½, student ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½)
 			Student dataStudent = StuManager.list.get(i);
 			dataStudentArray[i][0] = dataStudent.name;
-			String subject = "";//String °´Ã¼ ´ç ¸ğµç subject¸¦ ÇÏ³ª·Î ÀÌ¾î ºÙÀÏ °Í
-			//¿©±â¸¦ ÇÑ ÁÙ·Î ÀÔ·ÂÇÒ ¼ö ÀÖµµ·Ï ¹Ù²Ù±â
-			for(int j=0; j<dataStudent.subject.length;j++) {
-				subject=subject.concat(dataStudent.subject[j]);
+			String subject = "";//String ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ subjectï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+			//ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
+			for(int j=0; j<dataStudent.subject.size();j++) {
+				subject=subject.concat(dataStudent.subject.get(i));
 				subject=subject.concat(", ");
 			}
 			dataStudentArray[i][1]=subject;
 			dataStudentArray[i][2]=dataStudent.average_grade;
 		}
 
-		// Ç¥¿¡ ¹öÆ° ³Ö´Â ÄÚµå
+		// Ç¥ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½Ö´ï¿½ ï¿½Úµï¿½
 		table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 3 || column == 4; // Æ¯Á¤ ¿­(¹öÆ° ¿­)¸¸ ÆíÁı °¡´ÉÇÏµµ·Ï ¼³Á¤
+				return column == 3 || column == 4; // Æ¯ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½Æ° ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			}
 		});
 
 		TableColumnModel columnModel = table.getColumnModel();
-		columnModel.getColumn(3).setCellRenderer(new TableCell("ÇĞÁ¡ »óÈ£ ÀÎÁ¤"));
-		columnModel.getColumn(3).setCellEditor(new TableCell("ÇĞÁ¡ »óÈ£ ÀÎÁ¤"));
-		columnModel.getColumn(4).setCellRenderer(new TableCell("°³¼³ °­ÁÂ Á¤º¸"));
-		columnModel.getColumn(4).setCellEditor(new TableCell("°³¼³ °­ÁÂ Á¤º¸"));
+		columnModel.getColumn(3).setCellRenderer(new TableCell("í•™ì ìƒí˜¸ì¸ì •"));
+		columnModel.getColumn(3).setCellEditor(new TableCell("í•™ì ìƒí˜¸ì¸ì •"));
+		columnModel.getColumn(4).setCellRenderer(new TableCell("ê°œì„¤ê°•ì¢Œì •ë³´"));
+		columnModel.getColumn(4).setCellEditor(new TableCell("ê°œì„¤ê°•ì¢Œì •ë³´"));
 	}
 
-	// Ç¥ ¾È¿¡ ¹öÆ°À» ³Ö±â À§ÇØ »ç¿ëÇÏ´Â ÇÔ¼ö
+	// Ç¥ ï¿½È¿ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
 	class TableCell extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 
 		JButton jb;
@@ -142,7 +131,7 @@ class MainView extends JFrame implements ActionListener { // ¸ŞÀÎºä Á¤ÀÇ
 			// TODO Auto-generated constructor stub
 			jb = new JButton(text);
 
-			if (text.equals("ÇĞÁ¡ »óÈ£ ÀÎÁ¤")) {
+			if (text.equals("í•™ì ìƒí˜¸ì¸ì •")) {
 				jb.addActionListener(e -> {
 					jb.addActionListener(new SearchMutualSubject());
 				});
@@ -176,53 +165,53 @@ class MainView extends JFrame implements ActionListener { // ¸ŞÀÎºä Á¤ÀÇ
 
 	}
 	
-	// Action °ü·Ã ÇÔ¼ö
-	// ActionListener ¸¦ implement ÇßÀ¸¹Ç·Î ¹İµå½Ã ÇÊ¿äÇÑ ÇÔ¼ö 
+	// Action ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+	// ActionListener ï¿½ï¿½ implement ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½İµï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btn1) {
-			new InputSubject();//InputSubject class´Â JFrameÀ» ±¸ÇöÇÑ °ÍÀ¸·Î, ÀÌ·ÎºÎÅÍ »õ·Î¿î ÄÁÅ×ÀÌ³Ê(»õ Ã¢)¸¦ ¸¸µç´Ù
+			String fname = "C:/Users/USER/OneDrive/ë°”íƒ• í™”ë©´/ìœµí•© ì†Œí”„íŠ¸ì›¨ì–´/ìœµí•©í”„ë¡œê·¸ë˜ë°2/íŒ€ê³¼ì œ/java-programing/studentìƒ˜í”Œ.csv";
+			
+			
+			ReadCSV rcsv = new ReadCSV();
+			try {
+				rcsv.ReadCSV(StuManager.list, fname);
+			} catch (IOException f) {
+				f.printStackTrace();
+			}
 		}
+		
 
-		if (e.getSource() == btn2) {//btn2°¡ ´­·¯Á³À» ¶§
+		if (e.getSource() == btn2) {//btn2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			if (table.getSelectedRow() == -1) {
 			} else {
-				//¼±ÅÃµÈ ÇàÀÇ index »èÁ¦ ºÎºĞ(ÇØ´ç ÇĞ»ı Á¤º¸ ÀüºÎ »èÁ¦)
+				//ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ index ï¿½ï¿½ï¿½ï¿½ ï¿½Îºï¿½(ï¿½Ø´ï¿½ ï¿½Ğ»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 				int deleteIndex = table.getSelectedRow();
-				int size = StuManager.list.size();
-				int row_num = 0;//Å×ÀÌºí Çà °³¼ö ±¸ÇÏ±â
-				for (int i=0;i<size;i++) {
-					row_num+=StuManager.list.get(i).grade.length;//°¢ student °´Ã¼ ³» ¹è¿­(grade, °ú¸ñÀÇ ¼ö µ¿ÀÏÇÏ´Ï) ¿ø¼Ò ¼ö µ¡¼À
-					if(row_num>deleteIndex) {//deleteIndex ÇàÀÌ ¼ÓÇÑ student °´Ã¼(i) Ã£À¸¸é, list¿¡¼­ student »èÁ¦(deleteIndex°¡ rownumº¸´Ù ÀÛ°Å³ª °°À¸¸é, ¾ÆÁ÷ ÇØ´ç student¿¡ Á¢±Ù x ÀÇ¹Ì)
-						StuManager.list.remove(i);
-						break;
-					}
-				}
-//				StuManager.list.remove(deleteIndex);
+				StuManager.list.remove(deleteIndex);
 				this.refreshTable();
 			}
 		}
 
-		if (e.getSource() == btn3) {//this´Â mainView
+		if (e.getSource() == btn3) {//thisï¿½ï¿½ mainView
 			String titleTemp[] = new String[5];
-			titleTemp[0] = "ÇĞ»ı ÀÌ¸§";
-			titleTemp[1] = "ÇĞ»ı °ú¸ñ";
-			titleTemp[2] = "Æò±Õ ÇĞÁ¡";
-			titleTemp[3] = "ÇĞÁ¡ »óÈ£ ÀÎÁ¤";
-			titleTemp[4] = "°³¼³ °­ÁÂ Á¤º¸";
-
-			int size = StuManager.list.size();//¸Ç ¹Ø¿¡ StuManager class´Â Student °´Ã¼¸¦ ÀúÀåÇÏ°í ÀÖ´Â list¸¦ °¡Áö°í ÀÖÀ½. ÀÌ´Â list¾È¿¡ µé¾î°£ ¿ø¼Ò(Student °´Ã¼) ¼öÀÓ.
+			titleTemp[0] = "í•™ìƒ ì´ë¦„";
+			titleTemp[1] = "ê¸°ìˆ˜ê°•ê³¼ëª©";
+			titleTemp[2] = "í‰ê·  í•™ì ";
+			titleTemp[3] = "í•™ì  ìƒí˜¸ ì¸ì •";
+			titleTemp[4] = "ê°œì„¤ ê°•ì¢Œ ì •ë³´";
+			
+			int size = StuManager.list.size();//ï¿½ï¿½ ï¿½Ø¿ï¿½ StuManager classï¿½ï¿½ Student ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½Ì´ï¿½ listï¿½È¿ï¿½ ï¿½ï¿½î°£ ï¿½ï¿½ï¿½ï¿½(Student ï¿½ï¿½Ã¼) ï¿½ï¿½ï¿½ï¿½.
 //			String[][] dataStudentArray = new String[size][5];
-			//datastudentarray´Â JÅ×ÀÌºí¿¡ ³ªÅ¸³¾ Å×ÀÌºíÀÓ. 
+			//datastudentarrayï¿½ï¿½ Jï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½. 
 			Object [][] dataStudentArray = new Object[size][5];
-			for (int i = 0; i < size; i++) {//student °´Ã¼ ³» subject ¸ğµÎ °¢°¢ ÇÑ Çà¾¿ Â÷ÁöÇÏµµ·Ï(Áï, student °´Ã¼ ´ç Çà ÇÑ°³°¡ µÇµµ·Ï)
+			for (int i = 0; i < size; i++) {//student ï¿½ï¿½Ã¼ ï¿½ï¿½ subject ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½à¾¿ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½(ï¿½ï¿½, student ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½Çµï¿½ï¿½ï¿½)
 				Student dataStudent = StuManager.list.get(i);
 				dataStudentArray[i][0] = dataStudent.name;
-				String subject = "";//String °´Ã¼ ´ç ¸ğµç subject¸¦ ÇÏ³ª·Î ÀÌ¾î ºÙÀÏ °Í
-				//¿©±â¸¦ ÇÑ ÁÙ·Î ÀÔ·ÂÇÒ ¼ö ÀÖµµ·Ï ¹Ù²Ù±â
-				for(int j=0; j<dataStudent.subject.length;j++) {
-					subject=subject.concat(dataStudent.subject[j]);
+				String subject = "";//String ï¿½ï¿½Ã¼ ï¿½ï¿½ ï¿½ï¿½ï¿½ subjectï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+				//ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
+				for(int j=0; j<dataStudent.subject.size();j++) {
+					subject=subject.concat(dataStudent.subject.get(j));
 					subject=subject.concat(", ");
 				}
 				dataStudentArray[i][1]=subject;
@@ -230,154 +219,28 @@ class MainView extends JFrame implements ActionListener { // ¸ŞÀÎºä Á¤ÀÇ
 			}
 
 
-			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {//table Àç»ı¼º
+			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {//table ï¿½ï¿½ï¿½ï¿½ï¿½
 				@Override
 				public boolean isCellEditable(int row, int column) {
-					return column == 3 || column == 4; // Æ¯Á¤ ¿­(¹öÆ° ¿­)¸¸ ÆíÁı °¡´ÉÇÏµµ·Ï ¼³Á¤
+					return column == 3 || column == 4; // Æ¯ï¿½ï¿½ ï¿½ï¿½(ï¿½ï¿½Æ° ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				}
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(3).setCellRenderer(new TableCell("ÇĞÁ¡ »óÈ£ ÀÎÁ¤"));
-			columnModel.getColumn(3).setCellEditor(new TableCell("ÇĞÁ¡ »óÈ£ ÀÎÁ¤"));
-			columnModel.getColumn(4).setCellRenderer(new TableCell("°³¼³ °­ÁÂ Á¤º¸"));
-			columnModel.getColumn(4).setCellEditor(new TableCell("°³¼³ °­ÁÂ Á¤º¸"));
+			columnModel.getColumn(3).setCellRenderer(new TableCell("í•™ì ìƒí˜¸ì¸ì •"));
+			columnModel.getColumn(3).setCellEditor(new TableCell("í•™ì ìƒí˜¸ì¸ì •"));
+			columnModel.getColumn(4).setCellRenderer(new TableCell("ê°œì„¤ê°•ì¢Œì •ë³´"));
+			columnModel.getColumn(4).setCellEditor(new TableCell("ê°œì„¤ê°•ì¢Œì •ë³´"));
 		}
 
 	}
 
 }
 
-// ÇĞ»ı Á¤º¸ ÀÔ·Â Å¬·¡½º
-class InputSubject extends JFrame implements ActionListener {
-
-	JButton btnOk, btnClose;
-	JLabel name, subject, grade;
-	JTextField tv_name, tv_subject, tv_grade;
-	JTable table;
-	
-	public InputSubject() {//
-		super("°ú¸ñ ¹× ÇĞÁ¡ ÀÔ·Â");
-		this.setBounds(200, 200, 250, 300);
-		this.setLayout(new BorderLayout());
-
-		JPanel panelName = new JPanel();
-		JPanel panelSubject = new JPanel();
-		JPanel panelGrade = new JPanel();
-		JPanel panelButton = new JPanel();//¹öÆ° ¸ğ¾ÆµÑ JPanel
-
-		panelName.setLayout(new FlowLayout());
-		panelButton.setLayout(new FlowLayout());
-
-		
-		
-		name = new JLabel("ÀÌ¸§ : ");
-		/*
-		subject = new JLabel("°ú¸ñ : ");//Çà·ÄÀÇ 1Çà 1¿­
-		grade = new JLabel("ÇĞÁ¡ : ");//Çà·ÄÀÇ 1Çà 2¿­¿¡
-		*/
-		
-		tv_name = new JTextField(10);
-		/*
-		tv_subject = new JTextField(10);
-		tv_grade = new JTextField(10);
-		*/
-//³»°¡ º¯°æÇÏ°í ÀÖ´Â ºÎºĞ(btn Àü±îÁö)
-//subject, grade¸¦ ÀÔ·Â°ªÀ¸·Î ¹Ş´Â 2¿­Â¥¸® table data¸¸µé±â
-		// Column names
-        String[] columnNames = {"subject", "grade"};
-        // Create a DefaultTableModel with sample data
-        Object [][] data = new String[0][0];//Ã¢ Ã³À½ ¸¸µé¾îÁ³À» ¶§´Â µ¥ÀÌÅÍ °øÁıÇÕÀÌ µÇµµ·Ï
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        // Create a JTable with the DefaultTableModel
-        table = new JTable(model);
-        // Create a custom cell editor for text input
-        TableCellEditor textEditor = new DefaultCellEditor(new JTextField());
-        // Set the cell editor for all columns in the table
-        for (int i = 0; i < table.getColumnCount(); i++) {
-            TableColumn column = table.getColumnModel().getColumn(i);
-            column.setCellEditor(textEditor);
-        }
-        // Add the table to a JScrollPane
-        JScrollPane scrollPane = new JScrollPane(table);
-        // Create a button to add rows
-        JButton addRow = new JButton("°ú¸ñ Ãß°¡");//Çà Ãß°¡ ¹öÆ°
-        addRow.addActionListener(e -> {//Add Row ¹öÆ° ´©¸£¸é, ºó Çà »ı¼º(ÀÌº¥Æ® ¸®½º³Ê ºÙÀÎ °Í)
-            model.addRow(new Object[table.getColumnCount()]);
-        });
-		
-		btnOk = new JButton("È®ÀÎ");//OK¹öÆ°À» ´©¸£¸é ³²Àº °ú¸ñ Ãâ·ÂÇÏµµ·Ï ¹Ù²Ù±â(±âÁ¸ ¸ŞÀÎ ÆäÀÌÁöÀÇ Å×ÀÌºí°ú OK¹öÆ° ¹Ù²Ù¸é µÊ!)
-		btnClose = new JButton("Ãë¼Ò");
-
-		btnOk.addActionListener(this);
-		btnClose.addActionListener(this);
-
-		panelName.add(name);
-		panelName.add(tv_name);
-/*
-		panelSubject.add(subject);//°¢ ³×°³ÀÇ panel¿¡ µû·Îµû·Î ³Ö¾ú¾úÁö¸¸, ÀÌÁ¨, subject, grade´Â °°Àº Çà·Ä·Î ÇÒ °Í!
-		panelSubject.add(tv_subject);
-
-		panelGrade.add(grade);
-		panelGrade.add(tv_grade);
-*/
-		panelButton.add(btnOk);
-		panelButton.add(btnClose);
-		//³»°¡ Ãß°¡ÇÑ ºÎºĞ
-		panelButton.add(addRow);
-		
-		this.add(panelName, BorderLayout.NORTH);
-		/*±âÁ¸
-		this.add(panelSubject);
-		this.add(panelGrade);
-		*/
-		//³»°¡ ¼öÁ¤(ÀÌ ÇÑÁÙ¸¸)
-		this.add(scrollPane, BorderLayout.CENTER);
-		
-		this.add(panelButton, BorderLayout.SOUTH);
-
-		this.setVisible(true);
-	}
-
-	// implements ActionListener ÇßÀ¸¹Ç·Î ¹İµå½Ã ÇÊ¿äÇÑ ÇÔ¼ö
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnOk) {//grade, subject¿¡ ´ëÇÑ ¹è¿­ °¢°¢ »ı¼ºÈÄ, ÀÌ·ÎºÎÅÍ Student °´Ã¼ »ı¼º
-	        // Get the row count
-			System.out.println(tv_name.getText().toString().trim());
-	        int rowCount = table.getRowCount();
-	        // Create an array to store column values
-	        String[] subject_column = new String[rowCount];
-	        String[] grade_column = new String[rowCount];
-	        // Store column values in the array
-	        for (int i = 0; i < rowCount; i++) {
-	            subject_column[i] = (String) table.getValueAt(i, 0);}//tabel.getValueAtÀº object typeÀÌ±â¿¡, StringÀ¸·Î Å¸ÀÔ º¯È¯. 0¿­Àº subject¿­ÀÌ°í.
-	        for (int i = 0; i < rowCount; i++) {
-	            grade_column[i] = (String) table.getValueAt(i, 1);}
-
-			Student student = new Student(tv_name.getText().toString().trim(), subject_column, grade_column);//tv_subject¿Í tv_grade´Â 2¿­ÀÇ Çà·Ä·Î¼­ »ç¿ëÇÏ¿© Student °´Ã¼¿¡ tv_grade´Â ±×´ë·Î µé¾î°¡°Ô ÇÏ°í, Æò±ÕÇĞÁ¡ Ãß°¡
-
-			StuManager.list.add(student);//student °´Ã¼¸¦ list¿¡ ÀúÀå
-			/* ÃÊ±âÈ­ ºÎºĞ
-			tv_name.setText(null);
-			tv_subject.setText(null);
-			tv_grade.setText(null);
-		*/
-			//Ã¢ ´İ±â
-			dispose();
-			
-		}
-		if (e.getSource() == btnClose) {
-			dispose();
-		}
-
-	}
-
-}
 
 class SearchMutualSubject extends JFrame implements ActionListener {
 	public SearchMutualSubject() {
-		super("»óÈ£ ÀÎÁ¤ °ú¸ñ Á¶È¸");
+		super("í•™ì ìƒí˜¸ì¸ì •");
 
 		this.setBounds(200, 200, 250, 300);
 		this.setLayout(new FlowLayout());
@@ -393,10 +256,10 @@ class SearchMutualSubject extends JFrame implements ActionListener {
 
 }
 
-// °³¼³ °­ÁÂ Á¤º¸ Á¶È¸ ÇÔ¼ö
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½Ô¼ï¿½
 class SearchCourseInformation extends JFrame implements ActionListener {
 	public SearchCourseInformation() {
-		super("°³¼³ °­ÁÂ Á¤º¸ Á¶È¸");
+		super("ê°œì„¤ê°•ì¢Œì •ë³´");
 
 		this.setBounds(200, 200, 250, 300);
 		this.setLayout(new FlowLayout());
@@ -412,28 +275,9 @@ class SearchCourseInformation extends JFrame implements ActionListener {
 
 }
 
-// µ¥ÀÌÅÍ Å¬·¡½º
-class Student {
-	String name;
-	String [] subject;
-	String [] grade;
-	String average_grade;
-	//Æò±ÕÇĞÁ¡ º¯¼ö Ãß°¡
-	public Student(String name, String [] subject, String [] grade) {
-		this.name = name;
-		this.subject = subject;
-		this.grade = grade;
-//Æò±ÕÇĞÁ¡ º¯¼ö Ãß°¡
-		float t=0;
-		for(int i=0 ; i<grade.length ; i++) {//¹«Á¶°Ç ºó °ø°£ÀÌ ¾øµµ·Ï ¹è¿­À» ¸¸µé¾úÀ¸´Ï length·Î ÇØµµ µÊ.
-			t+=Float.parseFloat(grade[i]);
-		}
-		t=t/grade.length;
-		average_grade=Float.toString(t);
-	}
-}
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 
-// ÇØ´ç Å¬·¡½º¸¦ ÀÌ¿ëÇØ ÇĞ»ıµé Á¤º¸¸¦ ¿¬µ¿ÇÔ
+// ï¿½Ø´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ğ»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 class StuManager {
 	public static ArrayList<Student> list = new ArrayList<Student>();
 }

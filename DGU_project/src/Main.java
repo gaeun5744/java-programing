@@ -18,27 +18,29 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-class main {
+class Main {
 
 	public static void main(String[] args) {
 		new MainView();
+		//System.out.println(StuManager.list);
 	}
 
 }
-//
-class MainView extends JFrame implements ActionListener { // ���κ� ����
+//Main view
+class MainView extends JFrame implements ActionListener { 
 	JButton btn1 = null;
 	JButton btn2 = null;
 	JButton btn3 = null;
 	JTable table = null;
-
+	
+	//constructor
 	public MainView() {
 		super("융합전공소프트웨어FAQ시스템");
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		this.setBounds(200, 200, 800, 500);
 		this.setLayout(new FlowLayout());
 
-		JPanel panelTable = new JPanel();//���� ���������� table�� btn1, btn2, btn3�� ���� �����̳�
+		JPanel panelTable = new JPanel();
 		JPanel panelNormal = new JPanel();
 
 		panelTable.setLayout(new FlowLayout());
@@ -53,7 +55,7 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 		title[4] = "개설 강좌 정보";
 		String data[][] = new String[0][0];
 
-		// ���̺� ����
+
 		table = new JTable(data, title);
 		JScrollPane sp = new JScrollPane(table);
 		sp.setPreferredSize(new Dimension(700, 200));
@@ -61,7 +63,6 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 		panelTable.add(sp);
 
 		// panelNormal
-		// ��ư ����
 		btn1 = new JButton("정보 불러오기");
 		btn1.addActionListener(this);
 		panelNormal.add(btn1);
@@ -71,7 +72,7 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 		panelNormal.add(btn2);
 
 		btn3 = new JButton("정보 조회");
-		btn3.addActionListener(this);//btn3������, ������ ����
+		btn3.addActionListener(this);
 		panelNormal.add(btn3);
 
 		this.add(panelTable);
@@ -80,7 +81,7 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 		this.setVisible(true);
 	}
 
-	// �л� ���� ���� ��, �ٽ� ���̺� ������� �� ����ϴ� �Լ�
+	// 수정된 정보 업데이트 기능
 	public void refreshTable() { 
 
 		String titleTemp[] = new String[5];
@@ -90,15 +91,15 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 		titleTemp[3] = "학점 상호 인정";
 		titleTemp[4] = "개설 강좌 정보";
 
-		int size = StuManager.list.size();//�� �ؿ� StuManager class�� Student ��ü�� �����ϰ� �ִ� list�� ������ ����. �̴� list�ȿ� �� ����(Student ��ü) ����.
-//		String[][] dataStudentArray = new String[size][5];
-		//datastudentarray�� J���̺� ��Ÿ�� ���̺���. 
+		int size = StuManager.list.size();
+		//String[][] dataStudentArray = new String[size][5];
+	 
 		Object [][] dataStudentArray = new Object[size][5];
-		for (int i = 0; i < size; i++) {//student ��ü �� subject ��� ���� �� �྿ �����ϵ���(��, student ��ü �� �� �Ѱ��� �ǵ���)
+		for (int i = 0; i < size; i++) {
 			Student dataStudent = StuManager.list.get(i);
 			dataStudentArray[i][0] = dataStudent.name;
-			String subject = "";//String ��ü �� ��� subject�� �ϳ��� �̾� ���� ��
-			//���⸦ �� �ٷ� �Է��� �� �ֵ��� �ٲٱ�
+			String subject = "";
+			
 			for(int j=0; j<dataStudent.subject.size();j++) {
 				subject=subject.concat(dataStudent.subject.get(i));
 				subject=subject.concat(", ");
@@ -107,11 +108,10 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 			dataStudentArray[i][2]=dataStudent.average_grade;
 		}
 
-		// ǥ�� ��ư �ִ� �ڵ�
 		table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 3 || column == 4; // Ư�� ��(��ư ��)�� ���� �����ϵ��� ����
+				return column == 3 || column == 4; 
 			}
 		});
 
@@ -122,7 +122,7 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 		columnModel.getColumn(4).setCellEditor(new TableCell("개설강좌정보"));
 	}
 
-	// ǥ �ȿ� ��ư�� �ֱ� ���� ����ϴ� �Լ�
+	//
 	class TableCell extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 
 		JButton jb;
@@ -137,7 +137,7 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 				});
 			} else {
 				jb.addActionListener(e -> {
-					jb.addActionListener(new SearchCourseInformation());
+					jb.addActionListener(new SearchCourseInformation(StuManager.list.get(table.getSelectedRow())));
 				});
 			}
 
@@ -165,13 +165,11 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 
 	}
 	
-	// Action ���� �Լ�
-	// ActionListener �� implement �����Ƿ� �ݵ�� �ʿ��� �Լ� 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btn1) {
-			String fname = "C:/Users/USER/OneDrive/바탕 화면/융합 소프트웨어/융합프로그래밍2/팀과제/java-programing/student샘플.csv";
+			String fname = "/Users/yun-yeongheon/yh4/student샘플.csv";
 			
 			
 			ReadCSV rcsv = new ReadCSV();
@@ -183,17 +181,16 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 		}
 		
 
-		if (e.getSource() == btn2) {//btn2�� �������� ��
+		if (e.getSource() == btn2) {
 			if (table.getSelectedRow() == -1) {
 			} else {
-				//���õ� ���� index ���� �κ�(�ش� �л� ���� ���� ����)
 				int deleteIndex = table.getSelectedRow();
 				StuManager.list.remove(deleteIndex);
 				this.refreshTable();
 			}
 		}
 
-		if (e.getSource() == btn3) {//this�� mainView
+		if (e.getSource() == btn3) {
 			String titleTemp[] = new String[5];
 			titleTemp[0] = "학생 이름";
 			titleTemp[1] = "기수강과목";
@@ -201,15 +198,12 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 			titleTemp[3] = "학점 상호 인정";
 			titleTemp[4] = "개설 강좌 정보";
 			
-			int size = StuManager.list.size();//�� �ؿ� StuManager class�� Student ��ü�� �����ϰ� �ִ� list�� ������ ����. �̴� list�ȿ� �� ����(Student ��ü) ����.
-//			String[][] dataStudentArray = new String[size][5];
-			//datastudentarray�� J���̺� ��Ÿ�� ���̺���. 
+			int size = StuManager.list.size();
 			Object [][] dataStudentArray = new Object[size][5];
-			for (int i = 0; i < size; i++) {//student ��ü �� subject ��� ���� �� �྿ �����ϵ���(��, student ��ü �� �� �Ѱ��� �ǵ���)
+			for (int i = 0; i < size; i++) {
 				Student dataStudent = StuManager.list.get(i);
 				dataStudentArray[i][0] = dataStudent.name;
-				String subject = "";//String ��ü �� ��� subject�� �ϳ��� �̾� ���� ��
-				//���⸦ �� �ٷ� �Է��� �� �ֵ��� �ٲٱ�
+				String subject = "";
 				for(int j=0; j<dataStudent.subject.size();j++) {
 					subject=subject.concat(dataStudent.subject.get(j));
 					subject=subject.concat(", ");
@@ -219,10 +213,10 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 			}
 
 
-			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {//table �����
+			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 				@Override
 				public boolean isCellEditable(int row, int column) {
-					return column == 3 || column == 4; // Ư�� ��(��ư ��)�� ���� �����ϵ��� ����
+					return column == 3 || column == 4; 
 				}
 			});
 
@@ -236,7 +230,6 @@ class MainView extends JFrame implements ActionListener { // ���κ� ��
 	}
 
 }
-
 
 class SearchMutualSubject extends JFrame implements ActionListener {
 	public SearchMutualSubject() {
@@ -256,28 +249,6 @@ class SearchMutualSubject extends JFrame implements ActionListener {
 
 }
 
-// ���� ���� ���� ��ȸ �Լ�
-class SearchCourseInformation extends JFrame implements ActionListener {
-	public SearchCourseInformation() {
-		super("개설강좌정보");
-
-		this.setBounds(200, 200, 250, 300);
-		this.setLayout(new FlowLayout());
-
-		this.setVisible(true);
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-	}
-
-}
-
-// ������ Ŭ����
-
-// �ش� Ŭ������ �̿��� �л��� ������ ������
 class StuManager {
 	public static ArrayList<Student> list = new ArrayList<Student>();
 }

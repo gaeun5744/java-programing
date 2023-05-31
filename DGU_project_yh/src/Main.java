@@ -31,6 +31,7 @@ class MainView extends JFrame implements ActionListener {
 	JButton btn1 = null;
 	JButton btn2 = null;
 	JButton btn3 = null;
+	JButton btn4 = null;
 	JTable table = null;
 	
 	//constructor
@@ -74,7 +75,12 @@ class MainView extends JFrame implements ActionListener {
 		btn3 = new JButton("정보 조회");
 		btn3.addActionListener(this);
 		panelNormal.add(btn3);
-
+		
+		btn4 = new JButton("정보 초기화");
+		btn4.addActionListener(this);
+		panelNormal.add(btn4);
+		
+	
 		this.add(panelTable);
 		this.add(panelNormal);
 
@@ -185,10 +191,6 @@ class MainView extends JFrame implements ActionListener {
 			if (table.getSelectedRow() == -1) {
 			} else {
 				int deleteIndex = table.getSelectedRow();
-				ArrayList val = StuManager.list.get(deleteIndex).subject;
-				for(int i =0; i<val.size();i++) {
-					System.out.println(val.get(i));
-				}
 				StuManager.list.remove(deleteIndex);
 				
 				this.refreshTable();
@@ -230,6 +232,10 @@ class MainView extends JFrame implements ActionListener {
 			columnModel.getColumn(3).setCellEditor(new TableCell("학점상호인정"));
 			columnModel.getColumn(4).setCellRenderer(new TableCell("개설강좌정보"));
 			columnModel.getColumn(4).setCellEditor(new TableCell("개설강좌정보"));
+		}
+		
+		if(e.getSource() == btn4) {
+			StuManager.list.clear();
 		}
 
 	}

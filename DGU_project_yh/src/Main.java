@@ -48,12 +48,11 @@ class MainView extends JFrame implements ActionListener {
 		panelNormal.setLayout(new FlowLayout());
 
 		// panelTable
-		String title[] = new String[5];
+		String title[] = new String[4];
 		title[0] = "학생 이름";
 		title[1] = "기수강과목";
 		title[2] = "평균 학점";
-		title[3] = "학점 상호 인정";
-		title[4] = "개설 강좌 정보";
+		title[3] = "개설 강좌 정보";
 		String data[][] = new String[0][0];
 
 
@@ -90,12 +89,11 @@ class MainView extends JFrame implements ActionListener {
 	// 수정된 정보 업데이트 기능
 	public void refreshTable() { 
 
-		String titleTemp[] = new String[5];
+		String titleTemp[] = new String[4];
 		titleTemp[0] = "학생 이름";
 		titleTemp[1] = "기수강과목";
 		titleTemp[2] = "평균 학점";
-		titleTemp[3] = "학점 상호 인정";
-		titleTemp[4] = "개설 강좌 정보";
+		titleTemp[3] = "개설 강좌 정보";
 
 		int size = StuManager.list.size();
 		//String[][] dataStudentArray = new String[size][5];
@@ -117,15 +115,13 @@ class MainView extends JFrame implements ActionListener {
 		table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 3 || column == 4; 
+				return column == 3; 
 			}
 		});
 
 		TableColumnModel columnModel = table.getColumnModel();
-		columnModel.getColumn(3).setCellRenderer(new TableCell("학점상호인정"));
-		columnModel.getColumn(3).setCellEditor(new TableCell("학점상호인정"));
-		columnModel.getColumn(4).setCellRenderer(new TableCell("개설강좌정보"));
-		columnModel.getColumn(4).setCellEditor(new TableCell("개설강좌정보"));
+		columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
+		columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
 	}
 
 	//
@@ -198,12 +194,11 @@ class MainView extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == btn3) {
-			String titleTemp[] = new String[5];
+			String titleTemp[] = new String[4];
 			titleTemp[0] = "학생 이름";
 			titleTemp[1] = "기수강과목";
 			titleTemp[2] = "평균 학점";
-			titleTemp[3] = "학점 상호 인정";
-			titleTemp[4] = "개설 강좌 정보";
+			titleTemp[3] = "개설 강좌 정보";
 			
 			int size = StuManager.list.size();
 			Object [][] dataStudentArray = new Object[size][5];
@@ -223,15 +218,13 @@ class MainView extends JFrame implements ActionListener {
 			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 				@Override
 				public boolean isCellEditable(int row, int column) {
-					return column == 3 || column == 4; 
+					return column == 3; 
 				}
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(3).setCellRenderer(new TableCell("학점상호인정"));
-			columnModel.getColumn(3).setCellEditor(new TableCell("학점상호인정"));
-			columnModel.getColumn(4).setCellRenderer(new TableCell("개설강좌정보"));
-			columnModel.getColumn(4).setCellEditor(new TableCell("개설강좌정보"));
+			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
+			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
 		}
 		
 		if(e.getSource() == btn4) {

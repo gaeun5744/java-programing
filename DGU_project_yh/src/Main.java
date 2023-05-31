@@ -101,7 +101,7 @@ class MainView extends JFrame implements ActionListener {
 			String subject = "";
 			
 			for(int j=0; j<dataStudent.subject.size();j++) {
-				subject=subject.concat(dataStudent.subject.get(i));
+				subject=subject.concat(dataStudent.subject.get(j));
 				subject=subject.concat(", ");
 			}
 			dataStudentArray[i][1]=subject;
@@ -169,7 +169,7 @@ class MainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btn1) {
-			String fname = "/Users/yun-yeongheon/yh4/student샘플.csv";
+			String fname = "C:/Users/gajig/Desktop/학점 관리/student샘플.csv";
 			
 			
 			ReadCSV rcsv = new ReadCSV();
@@ -185,7 +185,12 @@ class MainView extends JFrame implements ActionListener {
 			if (table.getSelectedRow() == -1) {
 			} else {
 				int deleteIndex = table.getSelectedRow();
+				ArrayList val = StuManager.list.get(deleteIndex).subject;
+				for(int i =0; i<val.size();i++) {
+					System.out.println(val.get(i));
+				}
 				StuManager.list.remove(deleteIndex);
+				
 				this.refreshTable();
 			}
 		}

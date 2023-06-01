@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -33,7 +34,7 @@ class MainView extends JFrame implements ActionListener {
 	JButton btn3 = null;
 	JButton btn4 = null;
 	JTable table = null;
-	
+    
 	//constructor
 	public MainView() {
 		super("융합전공소프트웨어FAQ시스템");
@@ -46,7 +47,7 @@ class MainView extends JFrame implements ActionListener {
 
 		panelTable.setLayout(new FlowLayout());
 		panelNormal.setLayout(new FlowLayout());
-
+		
 		// panelTable
 		String title[] = new String[4];
 		title[0] = "학생 이름";
@@ -87,7 +88,7 @@ class MainView extends JFrame implements ActionListener {
 	}
 
 	// 수정된 정보 업데이트 기능
-	public void refreshTable() { 
+	public void refreshTable() { // 수정1. Object [][] dataStudentArray = new Object[size][4]; ~ dataArray 객체 배열 크기 수정
 
 		String titleTemp[] = new String[4];
 		titleTemp[0] = "학생 이름";
@@ -96,9 +97,8 @@ class MainView extends JFrame implements ActionListener {
 		titleTemp[3] = "개설 강좌 정보";
 
 		int size = StuManager.list.size();
-		//String[][] dataStudentArray = new String[size][5];
 	 
-		Object [][] dataStudentArray = new Object[size][5];
+		Object [][] dataStudentArray = new Object[size][4];
 		for (int i = 0; i < size; i++) {
 			Student dataStudent = StuManager.list.get(i);
 			dataStudentArray[i][0] = dataStudent.name;
@@ -134,16 +134,11 @@ class MainView extends JFrame implements ActionListener {
 			// TODO Auto-generated constructor stub
 			jb = new JButton(text);
 
-			if (text.equals("학점상호인정")) {
-				jb.addActionListener(e -> {
-					jb.addActionListener(new SearchMutualSubject());
-				});
-			} else {
+			if (text.equals("개설강좌정보")) {
 				jb.addActionListener(e -> {
 					jb.addActionListener(new SearchCourseInformation(StuManager.list.get(table.getSelectedRow())));
 				});
 			}
-
 		}
 
 		@Override
@@ -171,17 +166,50 @@ class MainView extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == btn1) {
+		if (e.getSource() == btn1) { // 수정2. 정보 불러오기 누를 경우 바로 데이터 업로드
+		
 			String fname = "/Users/yun-yeongheon/yh0602/student샘플.csv";
 
-			
-			
 			ReadCSV rcsv = new ReadCSV();
 			try {
 				rcsv.ReadCSV(StuManager.list, fname);
 			} catch (IOException f) {
 				f.printStackTrace();
 			}
+			
+			String titleTemp[] = new String[4];
+
+			titleTemp[0] = "학생 이름";
+			titleTemp[1] = "기수강과목";
+			titleTemp[2] = "평균 학점";
+			titleTemp[3] = "개설 강좌 정보";
+			
+			int size = StuManager.list.size();
+			Object [][] dataStudentArray = new Object[size][5];
+			for (int i = 0; i < size; i++) {
+				Student dataStudent = StuManager.list.get(i);
+				dataStudentArray[i][0] = dataStudent.name;
+				String subject = "";
+				for(int j=0; j<dataStudent.subject.size();j++) {
+					subject=subject.concat(dataStudent.subject.get(j));
+					subject=subject.concat(", ");
+				}
+				dataStudentArray[i][1]=subject;
+				dataStudentArray[i][2]=dataStudent.average_grade;
+			}
+
+
+			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return column == 3; 
+				}
+			});
+
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
+			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
+
 		}
 		
 
@@ -231,14 +259,48 @@ class MainView extends JFrame implements ActionListener {
 			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
 		}
 		
-		if(e.getSource() == btn4) {
+		if(e.getSource() == btn4) { // 수정3. 초기화 버튼 누를 경우, 정보 조회 누를 필요 없이 바로 테이블에 데이터 출력
 			StuManager.list.clear();
+			
+			String titleTemp[] = new String[4];
+
+			titleTemp[0] = "학생 이름";
+			titleTemp[1] = "기수강과목";
+			titleTemp[2] = "평균 학점";
+			titleTemp[3] = "개설 강좌 정보";
+			
+			int size = StuManager.list.size();
+			Object [][] dataStudentArray = new Object[size][5];
+			for (int i = 0; i < size; i++) {
+				Student dataStudent = StuManager.list.get(i);
+				dataStudentArray[i][0] = dataStudent.name;
+				String subject = "";
+				for(int j=0; j<dataStudent.subject.size();j++) {
+					subject=subject.concat(dataStudent.subject.get(j));
+					subject=subject.concat(", ");
+				}
+				dataStudentArray[i][1]=subject;
+				dataStudentArray[i][2]=dataStudent.average_grade;
+			}
+
+
+			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return column == 3; 
+				}
+			});
+
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
+			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
+			
 		}
 
 	}
 
 }
-
+/*
 class SearchMutualSubject extends JFrame implements ActionListener {
 	public SearchMutualSubject() {
 		super("학점상호인정");
@@ -256,7 +318,7 @@ class SearchMutualSubject extends JFrame implements ActionListener {
 	}
 
 }
-
+*/
 class StuManager {
 	public static ArrayList<Student> list = new ArrayList<Student>();
 }

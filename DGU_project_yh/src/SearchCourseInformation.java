@@ -90,7 +90,6 @@ class SearchCourseInformation extends JFrame implements ActionListener {
             filteredData[i][1] = course.professor;
             filteredData[i][2] = course.classroom;
             filteredData[i][3] = course.time;
-
             filteredData[i][4] = course.tool;
             filteredData[i][5] = course.mutualsub;
 

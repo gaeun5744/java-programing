@@ -21,6 +21,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
     	this.student = student;
     	
     	// 개설 강좌 정보를 표시할 테이블 생성
+    	
         this.setBounds(1000, 500, 1000, 500);
         this.setLayout(new FlowLayout());
 
@@ -30,6 +31,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
         JTable table = new JTable(data, columnNames);
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(900, 400));
+
         add(scrollPane);
 
         this.setVisible(true);
@@ -59,6 +61,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
 
                 // Class 객체를 생성하고 리스트에 추가
                 Class course = new Class(classname, professor, classroom, time, tool, mutualsub);
+
                 classList.add(course);
             }
         } catch (IOException e) {
@@ -77,15 +80,20 @@ class SearchCourseInformation extends JFrame implements ActionListener {
         }
         
         //3.필터링된 개설 강좌 정보를 2차원 배열로 변환
+
         Object[][] filteredData = new Object[filteredClasses.size()][6];
+
+
         for (int i = 0; i < filteredClasses.size(); i++) {
             Class course = filteredClasses.get(i);
             filteredData[i][0] = course.classname;
             filteredData[i][1] = course.professor;
             filteredData[i][2] = course.classroom;
             filteredData[i][3] = course.time;
+
             filteredData[i][4] = course.tool;
             filteredData[i][5] = course.mutualsub;
+
         }
         
         

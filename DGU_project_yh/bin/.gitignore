@@ -1,7 +1,5 @@
 /Class.class
 /Main.class
-/MainView$1.class
-/MainView$2.class
 /MainView$TableCell.class
 /MainView.class
 /ReadCSV.class
@@ -10,3 +8,5 @@
 /StuManager.class
 /Student.class
 /TextEditorExample.class
+/MainView$1.class
+/MainView$2.class

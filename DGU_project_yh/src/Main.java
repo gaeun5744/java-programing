@@ -116,6 +116,7 @@ class MainView extends JFrame implements ActionListener {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return column == 3; 
+
 			}
 		});
 
@@ -172,6 +173,7 @@ class MainView extends JFrame implements ActionListener {
 
 		if (e.getSource() == btn1) {
 			String fname = "/Users/yun-yeongheon/yh0602/student샘플.csv";
+
 			
 			
 			ReadCSV rcsv = new ReadCSV();
@@ -194,7 +196,9 @@ class MainView extends JFrame implements ActionListener {
 		}
 
 		if (e.getSource() == btn3) {
+
 			String titleTemp[] = new String[4];
+
 			titleTemp[0] = "학생 이름";
 			titleTemp[1] = "기수강과목";
 			titleTemp[2] = "평균 학점";

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Classname,Professor,classroom,date,tool,mutualsub
 µí_1,Yoon,room7,Tuse15,java,ëª¨ë_¼í_ë¡_·¸__(ê²½ì_)/__ê·¸ë_ë°_¸°ì´__
 µí_1,Kim,room7,Tuse15,java,ëª¨ë_¼í_ë¡_·¸__(ê²½ì_)/__ê·¸ë_ë°_¸°ì´__
@@ -9,3 +10,16 @@ __,Yoon,room7,Tuse15,____,__
 ê³¼í_,Choi,room7,Tuse15,ê³¼í___,__
 __,Yoon,room7,Tuse15,____,__
 __,Kim,room7,Tuse15,____,__
+=======
+Classname,Professor,classroom,date
+ìœµí”„1,Yoon,room7,Tuse15
+ìœµí”„1,Kim,room7,Tuse15
+ìœµí”„1,Lee,room7,Tuse15
+ìœµí”„2,Yoon,room7,Tuse15
+ìœµí”„2,kim,room7,Tuse15
+ìì•Œ1,Yoon,room7,Tuse15
+ìˆ˜í•™,Yoon,room7,Tuse15
+ê³¼í•™,Choi,room7,Tuse15
+ì˜ì–´,Yoon,room7,Tuse15
+í™”í•™,Yoon,room7,Tuse15
+>>>>>>> d4a00e482b6aeb3a11533398be125be3a5c38987

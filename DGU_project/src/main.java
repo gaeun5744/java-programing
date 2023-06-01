@@ -171,7 +171,7 @@ class MainView extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == btn1) {
-			String fname = "/Users/yun-yeongheon/java-programing-develop_gaeun-3/student샘플.csv";
+			String fname = "/Users/yun-yeongheon/yh0602/student샘플.csv";
 			
 			
 			ReadCSV rcsv = new ReadCSV();

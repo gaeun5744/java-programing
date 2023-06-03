@@ -25,7 +25,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
         this.setBounds(1000, 500, 1000, 500);
         this.setLayout(new FlowLayout());
 
-        String[] columnNames = {"강의명", "교수", "강의실", "시간", "언어", "상호인정 과목"};
+        String[] columnNames = {"강의명", "교수", "강의실", "시간", "상호인정 과목", "언어"};
         Object[][] data = getClassDataFromCSV("/Users/yun-yeongheon/yh0602/classinfo.csv");
 
         JTable table = new JTable(data, columnNames);
@@ -71,7 +71,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
         //2.기수강 데이터 데이터 추출: completed: 학생 한명이 수강한 과목의 arraylist
         ArrayList<String> completed = student.subject;
         
-        //filteredClasses = classList - completed
+        //3. filteredClasses = classList - completed
         ArrayList<Class> filteredClasses = new ArrayList<>();
         for (Class course : classList) {
             if (!completed.contains(course.classname)) {
@@ -79,7 +79,9 @@ class SearchCourseInformation extends JFrame implements ActionListener {
             }
         }
         
-        //3.필터링된 개설 강좌 정보를 2차원 배열로 변환
+     
+        
+        //4.필터링된 개설 강좌 정보를 2차원 배열로 변환
 
         Object[][] filteredData = new Object[filteredClasses.size()][6];
 

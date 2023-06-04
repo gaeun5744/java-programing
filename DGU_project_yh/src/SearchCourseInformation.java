@@ -22,7 +22,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
     	
     	// 개설 강좌 정보를 표시할 테이블 생성
     	
-        this.setBounds(1000, 500, 1000, 500);
+        this.setBounds(1000,500,1000,500);
         this.setLayout(new FlowLayout());
 
         String[] columnNames = {"강의명", "교수", "강의실", "시간", "언어", "상호인정 과목"};

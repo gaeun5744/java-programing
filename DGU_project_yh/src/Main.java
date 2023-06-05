@@ -39,13 +39,15 @@ class MainView extends JFrame implements ActionListener {
 	JButton btn3 = null;
 	JButton btn4 = null;
 	JTable table = null;
+	ImageIcon sub1 = new ImageIcon("/Users/yun-yeongheon/yh0602/기수강과목.png");
+	ImageIcon sub2 = new ImageIcon("/Users/yun-yeongheon/yh0602/수강할과목.png");
     
 	//constructor
 	public MainView() {
 		
 		super("융합전공소프트웨어 수강정보 조회 시스템");
 		
-		ImageIcon backgroundImage = new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/bg.jpg");
+		ImageIcon backgroundImage = new ImageIcon("/Users/yun-yeongheon/yh0602/bg.jpg");
 		
 	    JLabel backgroundLabel = new JLabel(backgroundImage);
 	    backgroundLabel.setLayout(new BorderLayout());
@@ -91,28 +93,28 @@ class MainView extends JFrame implements ActionListener {
 
 		// panelNormal
 		
-		btn1 = new JButton(new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/Frame 1.png"));
+		btn1 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 1.png"));
 		btn1.setPreferredSize(new Dimension(100, 100));
 		btn1.setBackground(Color.WHITE);
 		
 		btn1.addActionListener(this);
 		panelNormal.add(btn1);
 
-		btn2 = new JButton(new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/Frame 2.png"));
+		btn2 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 2.png"));
 		btn2.setPreferredSize(new Dimension(100, 100));
 		btn2.setBackground(Color.WHITE);
 		
 		btn2.addActionListener(this);
 		panelNormal.add(btn2);
 
-		btn3 = new JButton(new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/Frame 3.png"));
+		btn3 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 3.png"));
 		btn3.setPreferredSize(new Dimension(100, 100));
 		btn3.setBackground(Color.WHITE);
 		
 		btn3.addActionListener(this);
 		panelNormal.add(btn3);
 		
-		btn4 = new JButton(new ImageIcon("/Users//simch/Desktop/융합프로그래밍2_team_project/Frame 4.png"));
+		btn4 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 4.png"));
 		btn4.setPreferredSize(new Dimension(100, 100));
 		btn4.setBackground(Color.WHITE);
 		
@@ -160,28 +162,31 @@ class MainView extends JFrame implements ActionListener {
 		});
 
 		TableColumnModel columnModel = table.getColumnModel();
-		columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
-		columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
-		columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
-		columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
+		columnModel.getColumn(1).setCellRenderer(new TableCell(sub1));
+		columnModel.getColumn(1).setCellEditor(new TableCell(sub1));
+		columnModel.getColumn(3).setCellRenderer(new TableCell(sub2));
+		columnModel.getColumn(3).setCellEditor(new TableCell(sub2));
 	}
 
 	//
 	class TableCell extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
 
 		JButton jb;
+		ImageIcon sub;
 
-		public TableCell(String text) {
+		
+		public TableCell(ImageIcon sub) {
 			// TODO Auto-generated constructor stub
-			jb = new JButton(text);
-
-			if (text.equals("개설강좌정보")) {
-				jb.addActionListener(e -> {
+			this.jb = new JButton(sub);
+			this.jb.setBackground(Color.WHITE);
+			
+			if (sub.equals(sub2)) {
+				this.jb.addActionListener(e -> {
 					jb.addActionListener(new SearchCourseInformation(StuManager.list.get(table.getSelectedRow())));
 				});
 			}
-			else if (text.equals("기수강과목")) {
-				jb.addActionListener(e -> {
+			else if (sub.equals(sub1)) {
+				this.jb.addActionListener(e -> {
 					jb.addActionListener(new ShowSubjects(StuManager.list.get(table.getSelectedRow())));
 				});
 			}
@@ -215,7 +220,7 @@ class MainView extends JFrame implements ActionListener {
 
 		if (e.getSource() == btn1) { // 수정2. 정보 불러오기 누를 경우 바로 데이터 업로드
 			// 파일경로 정의
-			String fname = "/Users/simch/Desktop/융합프로그래밍2_team_project/student샘플.csv";
+			String fname = "/Users/yun-yeongheon/yh0602/student샘플.csv";
 			// read csv
 			ReadCSV rcsv = new ReadCSV();
 			try {
@@ -254,10 +259,10 @@ class MainView extends JFrame implements ActionListener {
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
-			columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
-			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
-			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
+			columnModel.getColumn(1).setCellRenderer(new TableCell(sub1));
+			columnModel.getColumn(1).setCellEditor(new TableCell(sub1));
+			columnModel.getColumn(3).setCellRenderer(new TableCell(sub2));
+			columnModel.getColumn(3).setCellEditor(new TableCell(sub2));
 
 		}
 		
@@ -304,10 +309,10 @@ class MainView extends JFrame implements ActionListener {
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
-			columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
-			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
-			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
+			columnModel.getColumn(1).setCellRenderer(new TableCell(sub1));
+			columnModel.getColumn(1).setCellEditor(new TableCell(sub1));
+			columnModel.getColumn(3).setCellRenderer(new TableCell(sub2));
+			columnModel.getColumn(3).setCellEditor(new TableCell(sub2));
 		}
 		
 		if(e.getSource() == btn4) { // 수정3. 초기화 버튼 누를 경우, 정보 조회 누를 필요 없이 바로 테이블에 데이터 출력
@@ -343,35 +348,17 @@ class MainView extends JFrame implements ActionListener {
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
-			columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
-			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
-			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
+			columnModel.getColumn(1).setCellRenderer(new TableCell(sub1));
+			columnModel.getColumn(1).setCellEditor(new TableCell(sub1));
+			columnModel.getColumn(3).setCellRenderer(new TableCell(sub2));
+			columnModel.getColumn(3).setCellEditor(new TableCell(sub2));
 			
 		}
 
 	}
 
 }
-/*
-class SearchMutualSubject extends JFrame implements ActionListener {
-	public SearchMutualSubject() {
-		super("학점상호인정");
 
-		this.setBounds(500, 500, 500, 500);
-		this.setLayout(new FlowLayout());
-
-		this.setVisible(true);
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-	}
-
-}
-*/
 class StuManager {
 	public static ArrayList<Student> list = new ArrayList<Student>();
 }

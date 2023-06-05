@@ -45,7 +45,7 @@ class MainView extends JFrame implements ActionListener {
 		
 		super("융합전공소프트웨어 수강정보 조회 시스템");
 		
-		ImageIcon backgroundImage = new ImageIcon("/Users/yun-yeongheon/yh0602/bg.jpg");
+		ImageIcon backgroundImage = new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/bg.jpg");
 		
 	    JLabel backgroundLabel = new JLabel(backgroundImage);
 	    backgroundLabel.setLayout(new BorderLayout());
@@ -91,25 +91,25 @@ class MainView extends JFrame implements ActionListener {
 
 		// panelNormal
 		
-		btn1 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 1.png"));
+		btn1 = new JButton(new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/Frame 1.png"));
 		btn1.setPreferredSize(new Dimension(100, 100));
 		
 		btn1.addActionListener(this);
 		panelNormal.add(btn1);
 
-		btn2 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 2.png"));
+		btn2 = new JButton(new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/Frame 2.png"));
 		btn2.setPreferredSize(new Dimension(100, 100));
 		
 		btn2.addActionListener(this);
 		panelNormal.add(btn2);
 
-		btn3 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 3.png"));
+		btn3 = new JButton(new ImageIcon("/Users/simch/Desktop/융합프로그래밍2_team_project/Frame 3.png"));
 		btn3.setPreferredSize(new Dimension(100, 100));
 		
 		btn3.addActionListener(this);
 		panelNormal.add(btn3);
 		
-		btn4 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 4.png"));
+		btn4 = new JButton(new ImageIcon("/Users//simch/Desktop/융합프로그래밍2_team_project/Frame 4.png"));
 		btn4.setPreferredSize(new Dimension(100, 100));
 		
 		btn4.addActionListener(this);
@@ -143,19 +143,21 @@ class MainView extends JFrame implements ActionListener {
 				subject=subject.concat(dataStudent.subject.get(j));
 				subject=subject.concat(", ");
 			}
-			dataStudentArray[i][1]=subject;
+			//dataStudentArray[i][1]=subject;
 			dataStudentArray[i][2]=dataStudent.average_grade;
 		}
 
 		table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
-				return column == 3; 
+				return true; 
 
 			}
 		});
 
 		TableColumnModel columnModel = table.getColumnModel();
+		columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
+		columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
 		columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
 		columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
 	}
@@ -174,7 +176,13 @@ class MainView extends JFrame implements ActionListener {
 					jb.addActionListener(new SearchCourseInformation(StuManager.list.get(table.getSelectedRow())));
 				});
 			}
+			else if (text.equals("기수강과목")) {
+				jb.addActionListener(e -> {
+					jb.addActionListener(new ShowSubjects(StuManager.list.get(table.getSelectedRow())));
+				});
+			}
 		}
+		
 
 		@Override
 		public Object getCellEditorValue() {
@@ -203,7 +211,7 @@ class MainView extends JFrame implements ActionListener {
 
 		if (e.getSource() == btn1) { // 수정2. 정보 불러오기 누를 경우 바로 데이터 업로드
 			// 파일경로 정의
-			String fname = "/Users/yun-yeongheon/yh0602/student샘플.csv";
+			String fname = "/Users/simch/Desktop/융합프로그래밍2_team_project/student샘플.csv";
 			// read csv
 			ReadCSV rcsv = new ReadCSV();
 			try {
@@ -229,7 +237,7 @@ class MainView extends JFrame implements ActionListener {
 					subject=subject.concat(dataStudent.subject.get(j));
 					subject=subject.concat(", ");
 				}
-				dataStudentArray[i][1]=subject;
+				//dataStudentArray[i][1]=subject;
 				dataStudentArray[i][2]=dataStudent.average_grade;
 			}
 
@@ -237,11 +245,13 @@ class MainView extends JFrame implements ActionListener {
 			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 				@Override
 				public boolean isCellEditable(int row, int column) {
-					return column == 3; 
+					return true; 
 				}
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
+			columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
 			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
 			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
 
@@ -277,7 +287,7 @@ class MainView extends JFrame implements ActionListener {
 					subject=subject.concat(dataStudent.subject.get(j));
 					subject=subject.concat(", ");
 				}
-				dataStudentArray[i][1]=subject;
+				//dataStudentArray[i][1]=subject;
 				dataStudentArray[i][2]=dataStudent.average_grade;
 			}
 
@@ -285,11 +295,13 @@ class MainView extends JFrame implements ActionListener {
 			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 				@Override
 				public boolean isCellEditable(int row, int column) {
-					return column == 3; 
+					return true; 
 				}
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
+			columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
 			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
 			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
 		}
@@ -314,7 +326,7 @@ class MainView extends JFrame implements ActionListener {
 					subject=subject.concat(dataStudent.subject.get(j));
 					subject=subject.concat(", ");
 				}
-				dataStudentArray[i][1]=subject;
+				//dataStudentArray[i][1]=subject;
 				dataStudentArray[i][2]=dataStudent.average_grade;
 			}
 
@@ -322,11 +334,13 @@ class MainView extends JFrame implements ActionListener {
 			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
 				@Override
 				public boolean isCellEditable(int row, int column) {
-					return column == 3; 
+					return true; 
 				}
 			});
 
 			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(1).setCellRenderer(new TableCell("기수강과목"));
+			columnModel.getColumn(1).setCellEditor(new TableCell("기수강과목"));
 			columnModel.getColumn(3).setCellRenderer(new TableCell("개설강좌정보"));
 			columnModel.getColumn(3).setCellEditor(new TableCell("개설강좌정보"));
 			

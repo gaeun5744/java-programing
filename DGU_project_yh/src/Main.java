@@ -37,17 +37,16 @@ class MainView extends JFrame implements ActionListener {
 	JButton btn1 = null;
 	JButton btn2 = null;
 	JButton btn3 = null;
-	JButton btn4 = null;
 	JTable table = null;
-	ImageIcon sub1 = new ImageIcon("/Users/yun-yeongheon/yh0602/기수강과목.png");
-	ImageIcon sub2 = new ImageIcon("/Users/yun-yeongheon/yh0602/수강할과목.png");
+	ImageIcon sub1 = new ImageIcon("C:/Users/gajig/Desktop/학점 관리/기수강과목.png");
+	ImageIcon sub2 = new ImageIcon("C:/Users/gajig/Desktop/학점 관리/수강할과목.png");
     
 	//constructor
 	public MainView() {
 		
 		super("융합전공소프트웨어 수강정보 조회 시스템");
 		
-		ImageIcon backgroundImage = new ImageIcon("/Users/yun-yeongheon/yh0602/bg.jpg");
+		ImageIcon backgroundImage = new ImageIcon("C:/Users/gajig/Desktop/학점 관리/bg.jpg");
 		
 	    JLabel backgroundLabel = new JLabel(backgroundImage);
 	    backgroundLabel.setLayout(new BorderLayout());
@@ -93,7 +92,7 @@ class MainView extends JFrame implements ActionListener {
 
 		// panelNormal
 		
-		btn1 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 1.png"));
+		btn1 = new JButton(new ImageIcon("C:/Users/gajig/Desktop/학점 관리/Frame 1.png"));
 		btn1.setPreferredSize(new Dimension(100, 100));
 		btn1.setBorderPainted(false);
 		btn1.setBackground(Color.WHITE);
@@ -101,7 +100,7 @@ class MainView extends JFrame implements ActionListener {
 		btn1.addActionListener(this);
 		panelNormal.add(btn1);
 
-		btn2 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 2.png"));
+		btn2 = new JButton(new ImageIcon("C:/Users/gajig/Desktop/학점 관리/Frame 2.png"));
 		btn2.setPreferredSize(new Dimension(100, 100));
 		btn2.setBorderPainted(false);
 		btn2.setBackground(Color.WHITE);
@@ -109,21 +108,14 @@ class MainView extends JFrame implements ActionListener {
 		btn2.addActionListener(this);
 		panelNormal.add(btn2);
 
-		btn3 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 3.png"));
+		
+		btn3 = new JButton(new ImageIcon("C:/Users/gajig/Desktop/학점 관리/Frame 4.png"));
 		btn3.setPreferredSize(new Dimension(100, 100));
 		btn3.setBorderPainted(false);
 		btn3.setBackground(Color.WHITE);
 		
 		btn3.addActionListener(this);
 		panelNormal.add(btn3);
-		
-		btn4 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 4.png"));
-		btn4.setPreferredSize(new Dimension(100, 100));
-		btn4.setBorderPainted(false);
-		btn4.setBackground(Color.WHITE);
-		
-		btn4.addActionListener(this);
-		panelNormal.add(btn4);
 		
 		this.add(panelTable);
 		this.add(panelNormal);
@@ -183,6 +175,7 @@ class MainView extends JFrame implements ActionListener {
 			// TODO Auto-generated constructor stub
 			this.jb = new JButton(sub);
 			this.jb.setBackground(Color.WHITE);
+			this.jb.setBorderPainted(false);
 			
 			if (sub.equals(sub2)) {
 				this.jb.addActionListener(e -> {
@@ -224,7 +217,7 @@ class MainView extends JFrame implements ActionListener {
 
 		if (e.getSource() == btn1) { // 수정2. 정보 불러오기 누를 경우 바로 데이터 업로드
 			// 파일경로 정의
-			String fname = "/Users/yun-yeongheon/yh0602/student샘플.csv";
+			String fname = "C:/Users/gajig/Desktop/학점 관리/student샘플.csv";
 			// read csv
 			ReadCSV rcsv = new ReadCSV();
 			try {
@@ -281,45 +274,8 @@ class MainView extends JFrame implements ActionListener {
 			}
 		}
 
-		if (e.getSource() == btn3) {
-
-			String titleTemp[] = new String[4];
-
-			titleTemp[0] = "학생 이름";
-			titleTemp[1] = "기수강과목";
-			titleTemp[2] = "평균 학점";
-			titleTemp[3] = "개설 강좌 정보";
-			
-			int size = StuManager.list.size();
-			Object [][] dataStudentArray = new Object[size][5];
-			for (int i = 0; i < size; i++) {
-				Student dataStudent = StuManager.list.get(i);
-				dataStudentArray[i][0] = dataStudent.name;
-				String subject = "";
-				for(int j=0; j<dataStudent.subject.size();j++) {
-					subject=subject.concat(dataStudent.subject.get(j));
-					subject=subject.concat(", ");
-				}
-				//dataStudentArray[i][1]=subject;
-				dataStudentArray[i][2]=dataStudent.average_grade;
-			}
-
-
-			table.setModel(new DefaultTableModel(dataStudentArray, titleTemp) {
-				@Override
-				public boolean isCellEditable(int row, int column) {
-					return true; 
-				}
-			});
-
-			TableColumnModel columnModel = table.getColumnModel();
-			columnModel.getColumn(1).setCellRenderer(new TableCell(sub1));
-			columnModel.getColumn(1).setCellEditor(new TableCell(sub1));
-			columnModel.getColumn(3).setCellRenderer(new TableCell(sub2));
-			columnModel.getColumn(3).setCellEditor(new TableCell(sub2));
-		}
 		
-		if(e.getSource() == btn4) { // 수정3. 초기화 버튼 누를 경우, 정보 조회 누를 필요 없이 바로 테이블에 데이터 출력
+		if(e.getSource() == btn3) { // 수정3. 초기화 버튼 누를 경우, 정보 조회 누를 필요 없이 바로 테이블에 데이터 출력
 			StuManager.list.clear();
 			
 			String titleTemp[] = new String[4];

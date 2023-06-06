@@ -95,6 +95,7 @@ class MainView extends JFrame implements ActionListener {
 		
 		btn1 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 1.png"));
 		btn1.setPreferredSize(new Dimension(100, 100));
+		btn1.setBorderPainted(false);
 		btn1.setBackground(Color.WHITE);
 		
 		btn1.addActionListener(this);
@@ -102,6 +103,7 @@ class MainView extends JFrame implements ActionListener {
 
 		btn2 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 2.png"));
 		btn2.setPreferredSize(new Dimension(100, 100));
+		btn2.setBorderPainted(false);
 		btn2.setBackground(Color.WHITE);
 		
 		btn2.addActionListener(this);
@@ -109,6 +111,7 @@ class MainView extends JFrame implements ActionListener {
 
 		btn3 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 3.png"));
 		btn3.setPreferredSize(new Dimension(100, 100));
+		btn3.setBorderPainted(false);
 		btn3.setBackground(Color.WHITE);
 		
 		btn3.addActionListener(this);
@@ -116,6 +119,7 @@ class MainView extends JFrame implements ActionListener {
 		
 		btn4 = new JButton(new ImageIcon("/Users/yun-yeongheon/yh0602/Frame 4.png"));
 		btn4.setPreferredSize(new Dimension(100, 100));
+		btn4.setBorderPainted(false);
 		btn4.setBackground(Color.WHITE);
 		
 		btn4.addActionListener(this);

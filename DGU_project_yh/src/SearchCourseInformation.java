@@ -21,15 +21,17 @@ class SearchCourseInformation extends JFrame implements ActionListener {
     	this.student = student;
     	
     	// 개설 강좌 정보를 표시할 테이블 생성
-        this.setBounds(200, 200, 250, 300);
+    	
+        this.setBounds(1000, 500, 1000, 500);
         this.setLayout(new FlowLayout());
 
-        String[] columnNames = {"강의명", "교수", "강의실", "시간"};
+        String[] columnNames = {"강의명", "교수", "강의실", "시간", "상호인정 과목", "언어"};
         Object[][] data = getClassDataFromCSV("C:/Users/gajig/Desktop/학점 관리/classinfo.csv");
 
         JTable table = new JTable(data, columnNames);
         JScrollPane scrollPane = new JScrollPane(table);
-        scrollPane.setPreferredSize(new Dimension(220, 200));
+        scrollPane.setPreferredSize(new Dimension(900, 400));
+
         add(scrollPane);
 
         this.setVisible(true);
@@ -54,9 +56,12 @@ class SearchCourseInformation extends JFrame implements ActionListener {
                 String professor = values[1];
                 String classroom = values[2];
                 String time = values[3];
+                String tool = values[4];
+                String mutualsub = values[5];
 
                 // Class 객체를 생성하고 리스트에 추가
-                Class course = new Class(classname, professor, classroom, time);
+                Class course = new Class(classname, professor, classroom, time, tool, mutualsub);
+
                 classList.add(course);
             }
         } catch (IOException e) {
@@ -66,7 +71,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
         //2.기수강 데이터 데이터 추출: completed: 학생 한명이 수강한 과목의 arraylist
         ArrayList<String> completed = student.subject;
         
-        //filteredClasses = classList - completed
+        //3. filteredClasses = classList - completed
         ArrayList<Class> filteredClasses = new ArrayList<>();
         for (Class course : classList) {
             if (!completed.contains(course.classname)) {
@@ -74,14 +79,22 @@ class SearchCourseInformation extends JFrame implements ActionListener {
             }
         }
         
-        //3.필터링된 개설 강좌 정보를 2차원 배열로 변환
-        Object[][] filteredData = new Object[filteredClasses.size()][4];
+     
+        
+        //4.필터링된 개설 강좌 정보를 2차원 배열로 변환
+
+        Object[][] filteredData = new Object[filteredClasses.size()][6];
+
+
         for (int i = 0; i < filteredClasses.size(); i++) {
             Class course = filteredClasses.get(i);
             filteredData[i][0] = course.classname;
             filteredData[i][1] = course.professor;
             filteredData[i][2] = course.classroom;
             filteredData[i][3] = course.time;
+            filteredData[i][4] = course.tool;
+            filteredData[i][5] = course.mutualsub;
+
         }
         
         

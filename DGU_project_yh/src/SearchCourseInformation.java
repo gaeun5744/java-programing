@@ -26,7 +26,7 @@ class SearchCourseInformation extends JFrame implements ActionListener {
         this.setLayout(new FlowLayout());
 
         String[] columnNames = {"강의명", "교수", "강의실", "시간", "상호인정 과목", "언어"};
-        Object[][] data = getClassDataFromCSV("/Users/yun-yeongheon/yh0602/classinfo.csv");
+        Object[][] data = getClassDataFromCSV("C:/Users/gajig/Desktop/학점 관리/classinfo.csv");
 
         JTable table = new JTable(data, columnNames);
         JScrollPane scrollPane = new JScrollPane(table);
